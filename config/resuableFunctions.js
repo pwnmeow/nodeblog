@@ -26,9 +26,16 @@ const paginatedResults = (req,model) => {
     }}
 
     // Slicing the model giving it start and end index
-    results.results = model.slice(startIndex,endIndex);
     
+    results.results = model.slice(startIndex,endIndex);
+
     return results;
   };
 
+  const getFullUrl = (req) => {
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    return fullUrl;
+  }
+
+  exports.getFullUrl = getFullUrl;
   exports.paginatedResults = paginatedResults;
